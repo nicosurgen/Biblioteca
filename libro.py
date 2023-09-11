@@ -273,4 +273,32 @@ def RegistrarUsuario(Usuarios:List[Dict], ListaDeIdentificadores: List[int]):
     Usuarios.append(usuario)
 
 
+# Función para obtener la lista de libros en la biblioteca
 
+def LibrosBiblio(biblioteca: List[Dict]):
+    return [libro["Título"] for libro in biblioteca]
+
+# Función para obtener una lista de todos los usuarios registrados en la biblioteca junto con su identificador
+
+def Users(Usuarios: List[Dict]):
+    return [(user["Nombre"],user["Identificador"]) for user in Usuarios]
+
+# Función para obtener la info de un usuario mediante la búsqueda por su identificador
+
+def BusquedaUsuario(Usuarios: List[Dict]):
+    while True:
+        try:
+            ident = int(input("Ingrese el identificador del usuario a buscar: "))
+            break
+        except:
+            print("Escriba un identificador válido")
+    if ident in [ids["Identificador"] for ids in Usuarios]:
+        for usuario in Usuarios:
+            if ident == usuario["Identificador"]:
+                userbuscado = usuario.copy()
+                userbuscado["Cantidad de libros prestados"] = len(usuario["Libros Prestados"])
+                return userbuscado
+    else:
+        print("No hay usuario que posea dicho identificador")
+        return
+        

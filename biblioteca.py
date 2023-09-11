@@ -1,9 +1,16 @@
-from libro import * 
+from app import api 
 
-titulo = ["El ultimo gol","El algoritmo del mal","El primer gol","Alicia"]
-autor = ["Messi","Nicolas Surgen","Messi","Charly"]
-genero = ["Deportes","Programación","Deportes","Fantasia"]
-cantidad = [10,3,15,2] 
+
+# Información sobre los libros
+titulo = ["Te regalo un teorema","Harry Potter y la piedra filosofal","Cien años de soledad","Heartstopper Tomo 1","Orgullo y prejuicio",
+          "El señor de los anillos el retorno del rey","Crimen y castigo","Indigno de ser humano"]
+
+autor = ["Pablo Groisman","J.K.Rowling","Gabriel García Márquez","Alice Oseman","Jane Austen","Tolkien J.R.R","Fiódor Dostoyevski","Osamu Dazai"]
+
+genero = ["Educación",["Fantasía","Aventura"],["Ficción","Realismo magico"],"Amor",["Novela", "Ficción", "Romance"],
+          ["Alta fantasía", "Ficción de aventuras"],["Policial", "Novela filosófica"],["Novela", "Ficción"]]
+
+cantidad = [10,15,5,6,6,9,15,2] 
 biblioteca = []
 for t,a,g,c in zip(titulo,autor,genero,cantidad):
     biblioteca.append({
@@ -13,30 +20,32 @@ for t,a,g,c in zip(titulo,autor,genero,cantidad):
                         "Cantidad de copias disponibles": c
                 })
 
-identificadores = [141024]
+# Información sobre usuarios
+ids = [241724,666666,767899,698765,998833,224466]
+nombres = ["Nicolas","Catalina","Juan Cruz","Noelia","Ramiro","Rocio"]
+librosprestados = [["Indigno de ser humano","Te regalo un teorema","El señor de los anillos el retorno del rey"],
+                   ["Crimen y castigo","Orgullo y prejuicio"],
+                   ["Harry Potter y la piedra filosofal"],
+                   ["Heartstopper Tomo 1"],
+                   [],
+                   ["Harry Potter y la piedra filosofal"]]
 
-usuarios = [{
-                "Identificador": 141024,
-                "Nombre": "Nicolas",
-                "Libros Prestados": ["Alicia","El ultimo gol"]
-                }]
+usuarios = []
 
+for i,n,l in zip(ids,nombres,librosprestados):
+    usuarios.append({
+                "Identificador": i ,
+                "Nombre": n,
+                "Libros Prestados": l
+                })
 
-print(biblioteca)
-print()
-print(usuarios)
-print()
-print(identificadores)
-print()
-PrestarLibro(biblioteca,usuarios)
-DevolverLibro(biblioteca,usuarios)
-print()
-print(biblioteca)
-print()
-print(usuarios)
-print()
-print(identificadores)
-print()
+identificadores = [x["Identificador"] for x in usuarios]
 
+"""
+ESPACIO PARA PROBAR LA API
+
+print(api(Biblioteca= biblioteca, Usuarios= usuarios, Identificadores= identificadores))
+
+"""
 
 
