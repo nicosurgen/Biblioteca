@@ -21,7 +21,7 @@ for t,a,g,c in zip(titulo,autor,genero,cantidad):
                 })
 
 # Información sobre usuarios
-ids = [241724,666666,767899,698765,998833,224466]
+ids = [241724,666666,767899,285102,998833,224466]
 nombres = ["Nicolas","Catalina","Juan Cruz","Noelia","Ramiro","Rocio"]
 librosprestados = [["Indigno de ser humano","Te regalo un teorema","El señor de los anillos el retorno del rey"],
                    ["Crimen y castigo","Orgullo y prejuicio"],
@@ -47,5 +47,4 @@ ESPACIO PARA PROBAR LA API
 print(api(Biblioteca= biblioteca, Usuarios= usuarios, Identificadores= identificadores))
 
 """
-
 
