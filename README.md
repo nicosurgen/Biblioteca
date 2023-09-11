@@ -1,6 +1,6 @@
 # Problema: **Sistema de Gestión de Libros**
 
-Escribe un programa en el lenguaje de programación que prefieras para gestionar una colección de libros. Debes ser capaz de realizar las siguientes operaciones:
+Las tareas a realizar son las siguientes:
 
 - Agregar un nuevo libro a la colección con información como título, autor, género y número de copias disponibles.
 - Buscar un libro por título o autor y mostrar su información.
