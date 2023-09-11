@@ -4,10 +4,10 @@ from typing import List,Tuple,Dict
 # Creo la aplicación que reune todas las funcionalidades
 
 def api(Biblioteca:List[Dict], Usuarios:List[Dict], Identificadores: List[int]):
-    opciones = [i for i in range(1,9)]
+    opciones = [i for i in range(1,10)]
     
     while True:
-        print("Que opción desea realizar:\n 1.- Buscar un libro. \n 2.- Buscar un Usuario. \n 3.- Agregar un Usuario. \n 4.- Agregar un libro. \n 5.- Realizar un prestamo. \n 6.- Registrar una devolución. \n 7.- Obtener lista de libros. \n 8.- Obtener lista de usuarios")
+        print("Que opción desea realizar:\n 1.- Buscar un libro. \n 2.- Buscar un Usuario. \n 3.- Agregar un Usuario. \n 4.- Agregar un libro. \n 5.- Realizar un prestamo. \n 6.- Registrar una devolución. \n 7.- Obtener lista de libros. \n 8.- Eliminar un usuario \n 9.- Obtener lista de usuarios")
         try:
             opcion = int(input())
             if opcion in opciones:
@@ -44,6 +44,9 @@ def api(Biblioteca:List[Dict], Usuarios:List[Dict], Identificadores: List[int]):
     # Obtener lista de libros
     elif opcion == 7:
         return  LibrosBiblio(Biblioteca)
+    
+    elif opcion == 8:
+        EliminarUsuario(Usuarios,Identificadores)
      
     # Obtener lista de usuarios   
     else:

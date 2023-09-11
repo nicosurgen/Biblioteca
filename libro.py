@@ -289,3 +289,49 @@ def BusquedaUsuario(Usuarios: List[Dict]):
         print("No hay usuario que posea dicho identificador")
         return
         
+# Función para eliminar un usuario
+
+def EliminarUsuario(Usuarios:List[Dict], ListaDeIdentificadores: List[int]):
+    # Solicitar datos del usuario a eliminar
+    while True:
+        nombre = input("Ingrese el nombre del usuario: ")
+        # Solicitar ingresar un identificador de 6 dígitos
+        while True:
+            try:
+                identificador = input("Ingrese el idenficador de 6 dígitos: ")
+                if len(identificador) == 6:
+                    identificador = int(identificador)
+                    if identificador in ListaDeIdentificadores:
+                        NoEncontrado = True
+                        for i in Usuarios:
+                            if i.get("Identificador") == identificador and i.get("Nombre") == nombre:
+                                NoEncontrado = False 
+                                print(f"¿El usuario {nombre} va a ser eliminado, quiere proseguir?")
+                                while True:
+                                    decicion = input()
+                                    decicion = decicion.lower()
+                                    if decicion in ["si","no"]:
+                                        break
+                                    else:
+                                        print("Elija una opcion valida")
+        
+                                if decicion == "si":
+                                    Usuarios.remove(i)
+                                    for i in ListaDeIdentificadores:
+                                        if identificador == i:
+                                            ListaDeIdentificadores.remove(i)
+                                            break
+                                    print(f"El usuario {nombre} ha sido eliminado")
+                                    return
+                                    
+                                else:
+                                    print(f"No se va a eliminar el usuario {nombre}")
+                                    return    
+                        if NoEncontrado:
+                            print(f"El identificador {identificador} no se corresponde con ningun usuario")
+                            return        
+                else:
+                    print("El identificador debe tener 6 dígitos")
+            except:
+                print("Escribi un identificador válido")
+        
