@@ -105,6 +105,8 @@ def BuscarLibro(Biblioteca:List[Dict]):
             
         return resultado
     
+ 
+# Funcion para el prestamo de libros
     
 def PrestarLibro(biblioteca: List[Dict],usuariosreg: List[str],librosprestados: List[Dict]):
     while True:
@@ -120,6 +122,11 @@ def PrestarLibro(biblioteca: List[Dict],usuariosreg: List[str],librosprestados: 
         if decicion == "si":
             break
     if usuario in usuariosreg:
+        for user in librosprestados:
+            if user.get("Usuario") == usuario and user.get("Libros Prestados") >= 5:
+                print(f"Operación denegada, el usuario {usuario} debe devolver {user.get('Libros Prestados')} libros que le han sido prestados")
+                return
+           
         while True:
             print("¿Cual es el título del libro que se va a prestar?")
             prestar = input()
@@ -133,17 +140,30 @@ def PrestarLibro(biblioteca: List[Dict],usuariosreg: List[str],librosprestados: 
                     print("Elija una opcion valida")
             if decicion == "si":
                 break
+        NoExiste = True
         for libro in biblioteca:
             if libro.get("Título") == prestar:
                 if libro.get("Cantidad de copias disponibles") > 0:
                     libro["Cantidad de copias disponibles"] -= 1
-                    librosprestados.append({"Usuario":usuario,
-                                            "Libro Prestado": prestar
+                    flag = True
+                    for prestados in librosprestados:
+                        if prestados.get("Usuario") == usuario:
+                            if prestados.get("Libros Prestados") >= 1:
+                                prestados["Libros Prestados"] += 1
+                                flag = False
+                    if flag:
+                        librosprestados.append({"Usuario":usuario,
+                                            "Libros Prestados": 1
                                             })
-                    print(f"Se le ha prestado una copia del libro {prestar} al usuario {usuario}")
+                    NoExiste = False
+                    print(f'Se le ha prestado una copia del libro "{prestar}" al usuario {usuario}')
+                    break
                 else:
                     print(f"No quedan copias disponibles del libro {prestar}")
-            else:
-                print("No poseemos ese libro en nuestra biblioteca")
+        if NoExiste:
+            print("No poseemos ese libro en nuestra biblioteca")
     else:
-        print("Ese usuario no se encuentra registrado")            
+        print("Ese usuario no se encuentra registrado")     
+        
+
+       
